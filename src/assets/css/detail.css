@@ -1,0 +1,14 @@
+li {
+  text-decoration: none;
+  color: black;
+}
+
+.detail ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 5px;
+}/*# sourceMappingURL=detail.css.map */
