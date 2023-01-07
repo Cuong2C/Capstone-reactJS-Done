@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import CartTable from "./CartTable";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -8,32 +9,39 @@ const Cart = () => {
     return price * quantity;
   };
   return (
-    <div className="container-fluid cart">
-      <table className="table">
-        <tr>
-          <th scope="col">Img</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Total</th>
-        </tr>
-
-        {cartData?.length === 0
-          ? "Chưa có gì trong giỏ hàng"
-          : cartData.map((item, index) => {
+    <div className="profile">
+      <div className="profile__wrapper">
+        <div className="profile__container">
+          <div className="profile__content">
+            {cartData?.map((item, index) => {
               return (
-                <tr key={index}>
-                  <td>
-                    <img src={item.image} alt="" />
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                  <td>{item.quantity}</td>
-                  <td>{totalCounting(item.price, item.quantity)}</td>
-                </tr>
+                <div className="profile__tabs-info" key={index}>
+                  <div>
+                    <h6>
+                      + Orders have been placed <span>{item.date}</span>
+                    </h6>
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th style={{ width: "20%" }}>Image</th>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Quantity</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <CartTable item={item} />
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               );
             })}
-      </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

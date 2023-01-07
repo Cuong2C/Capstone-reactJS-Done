@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addToCartReducer } from "../../redux/reducers/cartReducer";
 import { getProductDetailApi } from "../../redux/reducers/productReducer";
-import Item from "../item/Item";
+import ShoeCard from "../../components/ShoeCard/ShoeCard";
+import {
+  getProductFavoriteAPI,
+  likeProductAPI,
+  unLikeProductAPI,
+} from "../../redux/reducers/ProductReducer/productReducer02";
 
 const Detail = () => {
   const { productID } = useParams();
@@ -11,6 +16,11 @@ const Detail = () => {
   const navigate = useNavigate();
   const { productDetail } = useSelector((store) => store.productData);
   const [quantity, setQuantity] = useState(1);
+  const { userLogin } = useSelector((state) => state.userReducer);
+  const { arrProduct, arrProductFavorite } = useSelector(
+    (state) => state.productReducer
+  );
+
   const addToCartHandle = () => {
     dispatch(
       addToCartReducer({
@@ -20,12 +30,68 @@ const Detail = () => {
     );
     navigate("/cart");
   };
+
+  const getProductFavorite = () => {
+    if (userLogin) {
+      const actionProductFavorite = getProductFavoriteAPI();
+      dispatch(actionProductFavorite);
+    }
+  };
+
+  const handleLikeProduct = async (id) => {
+    return await likeProductAPI(id)
+      .then((res) => {
+        if (!res) {
+          return;
+        }
+        getProductFavorite();
+      })
+      .catch((err) => console.log({ err }));
+  };
+
+  const handleUnLikeProduct = async (id) => {
+    return await unLikeProductAPI(id)
+      .then((res) => {
+        if (!res) {
+          return;
+        }
+        getProductFavorite();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const renderHeart = (prod) => {
+    <i
+      className="fa-regular fa-heart"
+      onClick={() => handleLikeProduct(prod.id)}
+    ></i>;
+    if (arrProductFavorite) {
+      if (
+        arrProductFavorite?.productsFavorite.some((item) => item.id === prod.id)
+      ) {
+        return (
+          <i
+            className="fa-solid fa-heart"
+            onClick={() => handleUnLikeProduct(prod.id)}
+          ></i>
+        );
+      } else {
+        return (
+          <i
+            className="fa-regular fa-heart"
+            onClick={() => handleLikeProduct(prod.id)}
+          ></i>
+        );
+      }
+    }
+  };
+
   useEffect(() => {
     dispatch(getProductDetailApi(productID));
   }, [productID]);
   return (
-    <div className="container-fluid">
-      <div className="row detail">
+    <div className="container-fluid home">
+      <div className="row detail-top">
         <div className="col-4">
           <img src={productDetail?.image} alt="" />
         </div>
@@ -38,10 +104,10 @@ const Detail = () => {
               return <li key={index}>{item}</li>;
             })}
           </ul>
-          <div>$ {productDetail?.price}</div>
+          <div className="pro-price">$ {productDetail?.price}</div>
           <div>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary button-detail"
               onClick={() => {
                 if (quantity >= 1) setQuantity(quantity - 1);
               }}
@@ -51,7 +117,7 @@ const Detail = () => {
             </button>
             {quantity}
             <button
-              className="btn btn-primary"
+              className="btn btn-primary button-detail"
               onClick={() => setQuantity(quantity + 1)}
             >
               +
@@ -64,12 +130,31 @@ const Detail = () => {
           </div>
         </div>
       </div>
-
-      <h1>RELATED PRODUCTS</h1>
-      <div className="row product-feature">
-        {productDetail?.relatedProducts?.map((item, index) => (
-          <Item key={index} item={item} />
-        ))}
+      <div className="detail-container home__product">
+        <h1>Related Products</h1>
+        <div className="product__container">
+          <div className="product__content row">
+            {productDetail?.relatedProducts?.map((item, index) => {
+              return (
+                <div
+                  className="product__item col-12 col-sm-6 col-lg-4"
+                  key={index}
+                >
+                  <div className="product__card">
+                    {userLogin ? (
+                      <div className="heart">{renderHeart(item)}</div>
+                    ) : (
+                      <div className="heart">
+                        <i className="fa-regular fa-heart"></i>
+                      </div>
+                    )}
+                    <ShoeCard prod={item} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
