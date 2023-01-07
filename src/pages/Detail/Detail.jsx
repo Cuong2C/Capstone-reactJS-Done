@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addToCartReducer } from "../../redux/reducers/cartReducer";
+import cartReducer, { addToCartReducer } from "../../redux/reducers/cartReducer";
 import { getProductDetailApi } from "../../redux/reducers/productReducer";
 import ShoeCard from "../../components/ShoeCard/ShoeCard";
 import {
@@ -88,7 +88,9 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getProductDetailApi(productID));
-  }, [productID]);
+    
+  }, [productID]); 
+
   return (
     <div className="container-fluid home">
       <div className="row detail-top">

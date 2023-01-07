@@ -28,9 +28,12 @@ const cartReducer = createSlice({
       //sau khi thêm mới thì phải update state cũ = cartData đã update => có vùng nhớ mới => rerender giao diện
       state.cartData = cartData;
     },
+    cartLoadReducer: (state, action) => {
+      state.cartData = action.payload;
+    },
   },
 });
 
-export const { addToCartReducer } = cartReducer.actions;
+export const { addToCartReducer, cartLoadReducer } = cartReducer.actions;
 
 export default cartReducer.reducer;
