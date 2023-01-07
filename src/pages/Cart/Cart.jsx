@@ -1,6 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartTable from "./CartTable";
+import {
+  addToCart,
+  checkAll,
+  checkItem,
+  deleteCartItem,
+  sendOrderApi,
+} from "../../redux/reducers/cartReducer";
 
 const Cart = () => {
   const dispatch = useDispatch();
