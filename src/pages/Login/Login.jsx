@@ -51,7 +51,7 @@ const Login = () => {
           setLoading(false);
           navigate("./home")
         },2000)
-    toast.success('Login successfully.', {
+    toast.success('', {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -127,7 +127,7 @@ const Login = () => {
           </div>
           <div className="form__social">
             <FacebookLogin
-              appId="911566656678249"
+              appId="599753691700080"
               autoLoad={false}
               fields="name,email,picture"
               cssClass="btn-fb"
