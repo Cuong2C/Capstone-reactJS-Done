@@ -80,7 +80,7 @@ const Login = () => {
     const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let error = {};
     if (!value.email) {
-      error.email = 'Email cannot be blank.'
+      error.email = 'Email can not be blank.'
     } else if (!value.email.match(regexEmail)) {
       error.email = 'Email is invalid.'
     }
@@ -123,7 +123,7 @@ const Login = () => {
             </div>
           </form>
           <div className="form__info">
-            <span>Don’t have an account? <NavLink to={'/users/register'}>Register</NavLink></span>
+            <span>Don not have an account? <NavLink to={'/users/register'}>Register</NavLink></span>
           </div>
           <div className="form__social">
             <FacebookLogin
