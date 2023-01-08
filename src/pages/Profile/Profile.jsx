@@ -52,8 +52,8 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <div className="title">
-        <h1>Profile</h1>
+      <div className="color-dark text-center">
+        <h1>PROFILE</h1>
       </div>
       {openModal && 
         <div className="updateProfile">
@@ -69,9 +69,7 @@ const Profile = () => {
         <div className="profile__container">
           <div className="profile__content">
             <div className="profile__wrap">
-              <div className="profile__avt">
-                <img src={profile.avatar} alt="avatar" />
-              </div>
+             
               <div className="profile__info row">
                 <div className="form__input col-12 col-md-6">
                   <input type="email" value={profile?.email} disabled/>
@@ -102,7 +100,7 @@ const Profile = () => {
                     <span>Female</span>
                   </label>
                 </div>
-                <div className="profile__update col-6">
+                <div className="profile__update  col-6">
                   <button onClick={handleOpenModal}>Change profile</button>
                 </div>
                 <div className="profile__update-password col-6">
@@ -112,10 +110,10 @@ const Profile = () => {
             </div>
             <div className="profile__tabs">
               <div className="profile__tab" onClick={handleHistory} style={{color: history ? '#dc4f72' : '#000'}}>
-                Order history
+               
               </div>
               <div className="profile__tab" style={{color: favorite ? '#dc4f72' : '#000'}} onClick={handleFavorite}>
-                Favorite
+                
               </div>
             </div>
             <div className="profile__tabs-container">
@@ -134,15 +132,15 @@ const Profile = () => {
             </div>
             }
             </div>
-            <div className="profile__pages">
+            {/* <div className="profile__pages">
               <div className="profile__page"><i className="fa-solid fa-angle-left"></i></div>
               <div className="profile__page">1</div>
               <div className="profile__page">2</div>
+              <div className="profile__page">3</div>
               <div className="profile__page">...</div>
-              <div className="profile__page">9</div>
-              <div className="profile__page">10</div>
+              <div className="profile__page">5</div>
               <div className="profile__page"><i className="fa-solid fa-angle-right"></i></div>
-            </div>
+            </div> */}
           </div>  
         </div>
       </div>

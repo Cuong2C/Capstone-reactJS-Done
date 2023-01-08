@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HashLoader from "react-spinners/HashLoader";
 import { useDispatch, useSelector } from 'react-redux'
-import { loginAPI, loginAction, loginFacebookAPI } from '../../redux/reducers/userReducer/userReducer';
+import { loginAPI, loginAction,loginFacebookAPI } from '../../redux/reducers/userReducer/userReducer'; //loginFacebookAPI
 import FacebookLogin from 'react-facebook-login';
 import logo from '../../assets/img/cyberlogo-white.png'
 
@@ -51,7 +51,7 @@ const Login = () => {
           setLoading(false);
           navigate("./home")
         },2000)
-    toast.success('Login successfully.', {
+    toast.success('', {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -80,7 +80,7 @@ const Login = () => {
     const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let error = {};
     if (!value.email) {
-      error.email = 'Email cannot be blank.'
+      error.email = 'Email can not be blank.'
     } else if (!value.email.match(regexEmail)) {
       error.email = 'Email is invalid.'
     }
@@ -123,12 +123,12 @@ const Login = () => {
             </div>
           </form>
           <div className="form__info">
-            <span>Don’t have an account? <NavLink to={'/users/register'}>Register</NavLink></span>
+            <span>Don not have an account? <NavLink to={'/users/register'}>Register</NavLink></span>
           </div>
           <div className="form__social">
             <FacebookLogin
-              appId="911566656678249"
-              autoLoad={false}
+              appId="6103817359665381"
+              autoLoad={true}
               fields="name,email,picture"
               cssClass="btn-fb"
               icon={<i className="fa-brands fa-facebook"></i>}
