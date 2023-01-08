@@ -128,7 +128,7 @@ const Login = () => {
           <div className="form__social">
             <FacebookLogin
               appId="6103817359665381"
-              autoLoad={true}
+              autoLoad={false}
               fields="name,email,picture"
               cssClass="btn-fb"
               icon={<i className="fa-brands fa-facebook"></i>}
