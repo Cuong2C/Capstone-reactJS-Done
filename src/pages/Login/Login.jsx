@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HashLoader from "react-spinners/HashLoader";
 import { useDispatch, useSelector } from 'react-redux'
-import { loginAPI, loginAction, loginFacebookAPI } from '../../redux/reducers/userReducer/userReducer';
+import { loginAPI, loginAction,loginFacebookAPI } from '../../redux/reducers/userReducer/userReducer'; //loginFacebookAPI
 import FacebookLogin from 'react-facebook-login';
 import logo from '../../assets/img/cyberlogo-white.png'
 
@@ -127,8 +127,8 @@ const Login = () => {
           </div>
           <div className="form__social">
             <FacebookLogin
-              appId="599753691700080"
-              autoLoad={false}
+              appId="6103817359665381"
+              autoLoad={true}
               fields="name,email,picture"
               cssClass="btn-fb"
               icon={<i className="fa-brands fa-facebook"></i>}

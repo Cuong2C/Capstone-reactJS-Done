@@ -110,8 +110,7 @@ export const profileAPI = () => {
       }
       removeLocalStorage(USER);
       eraseCookie(TOKEN);
-      // alert("Login session has expired. Please log in again.");
-      // window.location.reload();
+      
     })
 
     if (result) {
